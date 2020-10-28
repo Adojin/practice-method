@@ -25,8 +25,11 @@ public class Task01 {
 	 * @return единичную (диагональную) матрицу
 	 */
 	public static int[][] createOne (int n, int m) {
-		// TODO: удалите исключение и пишите здесь код
-		throw new RuntimeException("Not implemented yet");
+		int[][] arr = new int[n][m];
+		for(int i = 0; i < arr.length; i++){
+			arr[i][i] = 1;
+		}
+		return arr;
 	}
 
 	/**
@@ -36,8 +39,7 @@ public class Task01 {
 	 * @return нулевую матрицу
 	 */
 	public static int[][] createNull (int n, int m) {
-		// TODO: удалите исключение и пишите здесь код
-		throw new RuntimeException("Not implemented yet");
+		return new int[n][m];
 	}
 
 	/**
@@ -47,8 +49,13 @@ public class Task01 {
 	 * @return сумму двух матриц
 	 */
 	public static int[][] sumMatrix(int[][] one, int[][] two) {
-		// TODO: удалите исключение и пишите здесь код
-		throw new RuntimeException("Not implemented yet");
+		int[][] arr = new int[one.length][one.length];
+		for(int i = 0; i < arr.length; i++){
+			for(int j = 0; j < arr.length; j++){
+				arr[i][j] = one[i][j] + two[i][j];
+			}
+		}
+		return arr;
 	}
 
 	/**
@@ -58,8 +65,7 @@ public class Task01 {
 	 * @return произведение матриц
 	 */
 	public static int[][] productMatrix(int[][] one, int[][] two) {
-		// TODO: удалите исключение и пишите здесь код
-		throw new RuntimeException("Not implemented yet");
+
 	}
 
 	/**
