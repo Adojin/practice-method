@@ -1,5 +1,7 @@
 package ua.step.homework;
 
+import java.util.Arrays;
+
 /**
  * Написать и методы работы с квадратными матрицами (матрицы
  * представить в виде двухмерных массивов). 
@@ -15,7 +17,8 @@ package ua.step.homework;
 public class Task01 {
 
 	public static void main(String[] args) {
-		// TODO: Проверяйте методы здесь
+		int[][] arr = {{1,2,3}, {4,5,6}, {7,8,9}};
+		printMatrix(arr);
 	}
 
 	/**
@@ -60,12 +63,20 @@ public class Task01 {
 
 	/**
 	 * Вычисляет произведение двух матриц
-	 * @param one - первая матрица
-	 * @param two - вторая матрица
+	 * @param a - первая матрица
+	 * @param b - вторая матрица
 	 * @return произведение матриц
 	 */
-	public static int[][] productMatrix(int[][] one, int[][] two) {
-
+	public static int[][] productMatrix(int[][] a, int[][] b) {
+		int[][] c = new int[a.length][a[0].length];
+		for(int i = 0; i < c.length; i++) {
+			for(int j = 0; j < c.length; j++) {
+				for(int k = 0; k < c.length; k++) {
+                  c[i][j] += a[i][k] * b[k][j];
+				}
+			}
+		}
+		return c;
 	}
 
 	/**
@@ -76,7 +87,12 @@ public class Task01 {
 	 */
 	public static int[][] productMatrix(int[][] matrix, int num) {
 		// TODO: удалите исключение и пишите здесь код
-		throw new RuntimeException("Not implemented yet");
+		int[][] arr = new int[matrix.length][matrix[0].length];
+		for(int i = 0; i < arr.length; i++) {
+			for(int j = 0; j < arr.length; j++) {
+				arr[i][j] = matrix[i][j] * num;
+			}
+		}
 	}
 
 	/**
@@ -85,8 +101,33 @@ public class Task01 {
 	 * @return детерминант матрицы
 	 */
 	public static int determinant(int[][] matrix) {
-		// TODO: удалите исключение и пишите здесь код
-		throw new RuntimeException("Not implemented yet");
+		int d = 0;
+		if(matrix.length == 2 && matrix.length == 2) {
+			d = matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
+		}
+		else if(matrix.length == 3 && matrix.length == 3) {
+			d = matrix[0][0] * determinant(subMatrix(0, 0, matrix));
+			- matrix[0][1] * determinant(sumMatrix(0, 1, matrix))
+					+ matrix[0][2] * determinant(sumMatrix(0, 2, matrix));
+		}
+		return d;
+	}
+	private static int[][] subMatrix(int _i, int _j, int[][] matrix) {
+		int[][] arr = new int[matrix.length - 1][matrix[0].length - 1];
+		int ii = 0;
+		int jj = 0;
+		for(int i = 0; i < matrix.length; i++) {
+			if(i != _i) {
+				for(int j = 0; j < matrix.length; j++) {
+					if(j != _j) {
+						arr[ii][jj] = matrix[i][j];
+						jj++;
+					}
+				}
+				ii++;
+			}
+		}
+		return arr;
 	}
 
 	/**
@@ -94,7 +135,8 @@ public class Task01 {
 	 * @param matrix - матрица
 	 */
 	public static void printMatrix(int[][] matrix) {
-		// TODO: удалите исключение и пишите здесь код
-		throw new RuntimeException("Not implemented yet");
+		for(int i = 0; i < matrix.length; i++) {
+		System.out.println(Arrays.toString(matrix[i]));
+		}
 	}
 }
